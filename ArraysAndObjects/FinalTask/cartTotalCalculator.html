@@ -1,0 +1,116 @@
+<!-- Problem Statement
+You are building a shopping cart calculator. Each cart item is represented as an object with:
+{ id, name, price, qty, category }
+The program must calculate:
+1. Subtotal (sum of all items price × qty).
+2. Discounts:
+If quantity ≥ 3, apply 5% discount on that item.
+If category = &quot;stationery&quot; and subtotal of stationery items &gt; 200, apply 10% category
+discount.
+3. Final Total after discounts.
+
+Steps
+1. Create the cart: An array of objects (3–5 products, different categories).
+2. Use map() to calculate each item’s total (price × qty).
+3. Apply item-level discount using map() or inside reduce().
+4. Use filter() to extract stationery items and calculate their subtotal.
+5. Apply category-level discount if applicable.
+6. Use reduce() to calculate overall subtotal and final total.
+7. Use forEach() to print a formatted receipt.
+
+Sample Input (Cart Example)
+[
+{ id: 1, name: &quot;Pen&quot;, price: 20, qty: 2, category: &quot;stationery&quot; },
+{ id: 2, name: &quot;Mug&quot;, price: 150, qty: 1, category: &quot;kitchen&quot; },
+{ id: 3, name: &quot;Notebook&quot;, price: 80, qty: 3, category: &quot;stationery&quot; }
+]
+
+Expected Output (Approximate Format)
+Item: Pen (x2) = 40
+Item: Mug (x1) = 150
+Item: Notebook (x3) = 240 → discount applied
+---------------------------------
+Subtotal: 430
+
+Item Discounts: 12
+Stationery Discount: 26.8
+Final Total: 391.2
+
+Reminders
+● Don’t forget quantity × price when calculating totals.
+● Discounts must be subtracted after subtotal is found.
+● Use reduce() effectively to accumulate sums.
+● Break the problem into small reusable functions.
+● Format money properly (e.g., two decimal places).
+Note: This is an implementation lab. Follow the hints carefully and write the full program
+yourself.                                                                                     -->
+
+<!DOCTYPE html>
+<head>
+    <title>Cart Total Calculator</title>
+</head>
+<body>
+    <script>
+        // Part A – Setup the Cart
+        let cart = [
+            { id: 1, name: "Pen", price: 20, qty: 2, category: "stationery" },
+            { id: 2, name: "Mug", price: 150, qty: 1, category: "kitchen" },
+            { id: 3, name: "Notebook", price: 80, qty: 3, category: "stationery" }
+        ];
+
+        // Part B – Subtotal per Item
+        let itemTotals = cart.map(item => item.price * item.qty);
+        console.log("Item Totals:", itemTotals);
+
+        // Part C – Item-Level Discount (5% if qty ≥ 3)
+        let discountedItemTotals = cart.map(item => {
+            let subtotal = item.price * item.qty;
+            if(item.qty >= 3) 
+                subtotal = subtotal - (subtotal * 0.05); // apply 5% discount
+            return subtotal;
+        });
+        console.log("Discounted Item Totals:", discountedItemTotals);
+
+        // Part D – Category-Level Discount (10% on stationery subtotal > 200)
+        let stationeryItems = cart.filter(item => item.category === "stationery");
+        let stationeryTotal = stationeryItems.reduce((sum, item) => {
+            let subtotal = item.price * item.qty;
+            if(item.qty >= 3)
+                subtotal = subtotal - (subtotal * 0.05);  //apply 5% discount first
+            return sum + subtotal;
+        }, 0);
+
+        let stationeryDiscount = 0;
+        if(stationeryTotal > 200) 
+            stationeryDiscount = stationeryTotal * 0.10;
+
+        console.log("Stationery Total:", stationeryTotal);
+        console.log("Stationery Discount:", stationeryDiscount);
+
+        // Part E – Final Total
+        let subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+
+        // Calculate total item-level discount
+        let totalDiscountFromItems = subtotal - discountedItemTotals.reduce((a, b) => a + b, 0);
+
+        // Final total = subtotal - item discounts - stationery discount
+        let finalTotal = subtotal - totalDiscountFromItems - stationeryDiscount;
+
+        // Print Receipt
+        console.log("\n--- Receipt ---");
+        cart.forEach(item => {
+            let lineTotal = item.price * item.qty;
+            if(item.qty >= 3) 
+                console.log(`Item: ${item.name} (x${item.qty}) = ${lineTotal} → discount applied`);
+            else 
+                console.log(`Item: ${item.name} (x${item.qty}) = ${lineTotal}`);
+        });
+
+        console.log("---------------------------------");
+        console.log("Subtotal:", subtotal.toFixed(2));
+        console.log("Item Discounts:", totalDiscountFromItems.toFixed(2));
+        console.log("Stationery Discount:", stationeryDiscount.toFixed(2));
+        console.log("Final Total:", finalTotal.toFixed(2));
+    </script>
+</body>
+</html>

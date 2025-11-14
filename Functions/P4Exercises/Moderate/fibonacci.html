@@ -1,0 +1,31 @@
+<!-- Function Expression + Recursion:
+Write a named function expression that finds the nth Fibonacci number.
+Test with n = 6 and n = 10.     -->
+<!DOCTYPE html>
+<head>
+    <title>Fibonacci Series</title>
+</head>
+<body>
+    <script>
+        const fibonacci = function(n)
+        {
+            if(n==0)
+                return 0;
+            else if(n==1)
+                return 1;
+            else
+                return fibonacci(n-1) + fibonacci(n-2);
+        }
+
+        n = 6;
+        console.log("Fibonacci series: ");
+        for(let x=0; x<n; x++)
+            console.log(fibonacci(x));
+        
+        n = 10;
+        console.log("Fibonacci series: ");
+        for(let x=0; x<n; x++)
+            console.log(fibonacci(x));
+    </script>
+</body>
+</html>

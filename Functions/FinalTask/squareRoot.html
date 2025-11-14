@@ -1,0 +1,34 @@
+<!-- Implement a function calorieSqrt(calories) that returns the square root of calories burned.
+If the input is invalid or negative, throw an error and catch it.
+Input: calorieSqrt(-100)
+Output: &quot;Error: Negative numbers not allowed&quot;                                 -->
+
+<!DOCTYPE html>
+<head>
+    <title>Compute Square Root</title>
+</head>
+<body>
+    <script>
+        function calorieSqrt(calories)
+        {
+            try
+            {
+                if(typeof calories != "number" || isNaN(calories))
+                    throw new Error("Invalid input");
+                if(calories<0)
+                    throw new Error("Negative numbers are not allowed");
+
+                return Math.sqrt(calories);
+            }
+            catch(err)
+            {
+                return err.message;
+            }
+        }
+
+        console.log(calorieSqrt(144));
+        console.log(calorieSqrt(-100));
+        console.log(calorieSqrt("abc"));
+    </script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!-- Arrow Function – Multiple Checks:
+Write an arrow function that checks if a number is:
+a. Even
+b. Positive
+Return true only if both conditions are met.    -->
+<!DOCTYPE html>
+<head>
+    <title>Check Even Positive</title>
+</head>
+<body>
+    <script>
+        const isEvenPositive = (n) =>
+        {
+            if(n>0 && n%2==0)
+                return true;
+            else 
+                return false;
+        }
+
+        console.log("For 4: "+ isEvenPositive(4));
+        console.log("For 7: "+ isEvenPositive(7));
+        console.log("For -2: "+ isEvenPositive(-2));
+    </script>
+</body>
+</html>

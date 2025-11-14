@@ -1,0 +1,29 @@
+<!-- Closure – Personalized Counter:
+Create a closure that counts how many times a specific person’s name is entered.
+Example: If &quot;Alice&quot; is entered three times, it should return 3.   -->
+<!DOCTYPE html>
+<head>
+    <title>Personalized Counter</title>
+</head>
+<body>
+    <script>
+        function createNameCounter(personName) 
+        {
+            let count = 0; 
+
+            return function(name) {
+                if (name === personName) 
+                    count++;       
+                return `${personName} count: ${count}`;
+            };
+        }
+
+        const countAlice = createNameCounter("Alice");
+
+        console.log(countAlice("Alice")); // Alice count: 1
+        console.log(countAlice("Bob"));   // Alice count: 1 (no change)
+        console.log(countAlice("Alice")); // Alice count: 2
+        console.log(countAlice("Alice")); // Alice count: 3
+    </script>
+</body>
+</html>

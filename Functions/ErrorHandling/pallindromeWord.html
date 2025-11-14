@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<head>
+    <title>Pallindrome Word</title>
+</head>
+<body>
+    <script>
+        function isPallindrome(word)
+        {
+            let rev = "";
+            for(let x=word.length-1; x>=0; x--)
+                rev += word[x];
+
+            if(rev === word)
+                return true;
+            else
+                return false;
+        }
+
+        str = prompt("Enter a word: ");
+        try
+        {
+            if(typeof str != "string" || str == "")
+                throw new Error("Invalid input string or empty string");
+            if(isPallindrome(str))
+                console.log(str +" is a pallindrome");
+            else
+                console.log(str +" is not a pallindrome");
+        }
+        catch(err)
+        {
+            console.log("Error message: "+ err.message);
+        }
+    </script>
+</body>
+</html>

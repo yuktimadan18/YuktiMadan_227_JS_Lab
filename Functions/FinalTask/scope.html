@@ -1,0 +1,34 @@
+<!-- Show global, function, and block scope with variables such as trackerName, dailySteps,
+and tempCalories.                                                        -->
+
+<!DOCTYPE html>
+<head>
+    <title>Scope</title>
+</head>
+<body>
+    <script>
+        let trackerName = "FitTracker";     //Global Scope
+
+        function stepTracker()
+        {
+            let dailySteps = 8000;      //Function Scope
+
+            console.log("Inside function:");
+            console.log("Tracker Name (Global):", trackerName);    //accessible
+            console.log("Daily Steps (Function):", dailySteps);    //accessible
+
+            if(dailySteps>5000)
+            {   
+                let tempCalories = 250;     //Block Scope
+                console.log("Temp Calories (Block):", tempCalories);    //accessible inside block
+            }
+            //console.log(tempCalories);   //Error (cannot be accessed outside the block)
+        }
+
+        stepTracker();
+        console.log("Outside function:");
+        console.log("Tracker Name (Global):", trackerName);        //accessible outside the function
+        //console.log(dailySteps);      //Error (cannot be accessed outside the function)
+    </script>
+</body>
+</html>

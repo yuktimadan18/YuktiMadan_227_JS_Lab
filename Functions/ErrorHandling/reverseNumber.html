@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<head>
+    <title>Reverse Number</title>
+</head>
+<body>
+    <script>
+        function reverseNumber(n)
+        {
+            const isNeg = n<0;
+            const reversedStr = Math.abs(n).toString().split("").reverse().join("");
+            const reversedNum = parseInt(reversedStr, 10);
+
+            return isNeg ? -reversedNum : reversedNum; 
+        }
+
+        try
+        {
+            let num = parseInt(prompt("Enter a number: "), 10);
+            if(typeof num != "number" || isNaN(num))
+                throw new Error("Invalid number type");
+            console.log("Reversed number: "+ reverseNumber(num));
+        }
+        catch(err)
+        {
+            console.log("Error message: "+ err.message);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<head>
+    <title>Calculate Factorial</title>
+</head>
+<body>
+    <script>
+        const factorial = function(n)
+        {
+            if(n==0 || n==1)
+                return 1;
+            else
+                return n * factorial(n-1);
+        };
+
+        let num = prompt("Enter a number: ");
+        if(num<0)
+            console.log("Factorial of a negative number does not exist");
+        else
+            console.log(`Factorial of ${num} is ${factorial(num)}`);
+    </script>
+</body>
+</html>

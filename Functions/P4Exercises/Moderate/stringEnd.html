@@ -1,0 +1,22 @@
+<!-- Arrow Function String Check:
+Create an arrow function that checks if a sentence ends with &quot;!&quot;.
+Test it with both true and false cases.    -->
+<!DOCTYPE html>
+<head>
+    <title>Check String End</title>
+</head>
+<body>
+    <script>
+        const endsWithExclamation = (sentence) => 
+        {
+            let lastChar = sentence[sentence.length - 1];
+            return lastChar === "!";
+        }
+
+        console.log("'Hello!': "+ endsWithExclamation("Hello!"));   
+        console.log("'Hello': "+ endsWithExclamation("Hello"));    
+        console.log("'Wow!!!': "+ endsWithExclamation("Wow!!!"));   
+        console.log("'No way': "+ endsWithExclamation("No way"));   
+    </script>
+</body>
+</html>

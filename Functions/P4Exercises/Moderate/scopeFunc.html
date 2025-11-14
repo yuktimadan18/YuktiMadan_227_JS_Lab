@@ -1,0 +1,30 @@
+<!-- Scope Practice:
+Create a global variable and a block-scoped variable.
+Demonstrate which ones are accessible inside and outside a function and a block
+{ }.      -->
+<!DOCTYPE html>
+<head>
+    <title>Display Scope</title>
+</head>
+<body>
+    <script>
+        //global variable
+        let globalVar = "I am global";
+        function testScope() 
+        {   
+            //function variable or local variable
+            let functionVar = "I am in a function";
+            console.log(globalVar); // Accessible
+            console.log(functionVar); // Accessible
+        }
+        testScope();
+        // console.log(functionVar); // Error
+        {
+            //block variable
+            let blockVar = "I am block-scoped";
+            console.log(blockVar); // Accessible
+        }
+        // console.log(blockVar); // Error
+    </script>
+</body>
+</html>

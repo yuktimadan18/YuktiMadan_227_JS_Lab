@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<head>
+    <title>Array Operations</title>
+</head>
+<body>
+    <script>
+        // Step 1: Create an array with 5 numbers
+        let numbers = [2, 4, 6, 8, 10];
+        console.log("Original Array:", numbers);
+        
+        // Step 2: Add a new number using push()
+        numbers.push(12);
+        console.log("After push(12):", numbers);
+
+        // Step 3: Remove the last number using pop()
+        numbers.pop();
+        console.log("After pop():", numbers);
+        
+        // Step 4: Print the length of the array    
+        console.log("Array length:", numbers.length);
+
+        // Step 5: Use map() to get squares of numbers
+        let squares = numbers.map(num => num * num);
+        console.log("Squares:", squares);
+    </script>
+</body>
+</html>

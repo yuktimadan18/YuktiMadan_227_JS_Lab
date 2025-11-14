@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<head>
+    <title>DOM Traversal Examples</title>
+</head>
+<body>
+    <h1 id="main-title">Hello</h1>
+    <ul id="task-list"></ul>
+    <p class="note">This is a note.</p>
+    <button onclick="addTask()">Add Task</button>
+    <ul id="list"></ul>
+    <ul id="myList">
+    <li id="item1">Item 1</li>
+    </ul>
+    <ul id="tasks">
+    <li onclick="this.classList.toggle('done')">Click me to mark done</li>
+    </ul>
+    <script>
+        //Change Text Using getElementById
+        document.getElementById('main-title').textContent = 'Welcome to DOM!';
+
+        //Create and Append Element
+        const li = document.createElement('li');
+        li.textContent = 'Buy groceries';
+        document.getElementById('task-list').appendChild(li);
+        
+        //Use querySelector to Change Style
+        const note = document.querySelector('.note');
+        note.style.color = 'blue';
+
+        //Add Multiple Items with Button Click
+        function addTask() {
+            const li = document.createElement('li');
+            li.textContent = 'New Task';
+            document.getElementById('list').appendChild(li);
+        }
+
+        //Remove Element from DOM
+        const item = document.getElementById('item1');
+        item.parentNode.removeChild(item);
+    </script>
+    <!-- Toggle Task Done  -->
+    <style>
+        .done {
+            text-decoration: line-through;
+        }
+    </style>
+</body>
+</html>

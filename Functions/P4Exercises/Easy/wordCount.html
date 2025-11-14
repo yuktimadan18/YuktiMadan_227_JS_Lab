@@ -1,0 +1,26 @@
+<!-- Arrow Function – Word Count:
+Make an arrow function that takes a string and returns the number of words
+in it.
+Example: &quot;I love JavaScript&quot; → 3.   -->
+<!DOCTYPE html>
+<head>
+    <title>Word Count</title>
+</head>
+<body>
+    <script>
+        const wordCount = (str) =>
+        {
+            let count = 0;
+            for(let x=0; x<str.length; x++)
+            {
+                if(str[x]==" ")
+                    count++;
+            }
+            count++;
+            console.log("Number of words: "+ count);
+        }
+
+        wordCount("I love JavaScript");
+    </script>
+</body>
+</html>

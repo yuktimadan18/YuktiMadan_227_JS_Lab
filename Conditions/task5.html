@@ -1,0 +1,24 @@
+<html>
+<head>
+    <title>AI Emotion Detector</title>
+</head>
+<body>
+    <script>
+        let score = parseInt(prompt("Enter sentiment score (-10 to 10):"));
+        let keyword = prompt("Enter emotion keyword (e.g., tired, excited, confused):").toLowerCase();
+
+        if(score>=7 && keyword!=="tired") 
+            console.log("Chatbot: You sound really happy!");
+        else if(score>=4 && keyword==="tired") 
+            console.log("Chatbot: Glad you're doing okay, but maybe take some rest.");
+        else if(score<=-5 && keyword==="confused") 
+            console.log("Chatbot: I understand. Let me try to explain things better.");
+        else if(score<=-7) 
+            console.log("Chatbot: I'm here for you. Want to talk about it?");
+        else if(score===0 && keyword==="") 
+            console.log("Chatbot: I'm not sure how you're feeling. Can you tell me more?");
+        else 
+            console.log("Chatbot: Hmm... I see. Tell me more if you'd like.");
+    </script>
+</body>
+</html>

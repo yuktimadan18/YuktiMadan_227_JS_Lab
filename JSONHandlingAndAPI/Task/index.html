@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Records (Using Fetch and jQuery AJAX)</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 50%;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+        .highlight {
+            background-color: lightgreen;
+        }
+    </style>
+</head>
+<body>
+    <h2>Student Records (Using Fetch and jQuery AJAX)</h2>
+
+    <h3>Data from Fetch()</h3>
+    <table id="fetchTable"></table>
+
+    <h3>Data from $.getJSON()</h3>
+    <table id="jqueryTable"></table>
+
+    <script src="script.js"></script>
+</body>
+</html>

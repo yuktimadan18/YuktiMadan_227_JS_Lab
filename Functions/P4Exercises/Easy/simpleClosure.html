@@ -1,0 +1,20 @@
+<!-- Simple Closure – Personal Note:
+Write a closure that stores a note and returns a function to read it later.  -->
+<!DOCTYPE html>
+<head>
+    <title>Personal Note</title>
+</head>
+<body>
+    <script>
+        function createNote(note) 
+        {
+            return function(){
+            return `Your note: ${note}`;
+            };
+        }
+
+        const myNote = createNote("Remember to finish homework on time.");
+        console.log(myNote()); 
+    </script>
+</body>
+</html>

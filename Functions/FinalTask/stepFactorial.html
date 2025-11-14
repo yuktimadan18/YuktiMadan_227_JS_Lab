@@ -1,0 +1,26 @@
+<!-- Create a function expression stepsFactorial that calculates the factorial of steps (to
+generate a unique challenge ID for fitness competitions).
+Input: stepsFactorial(4)
+Output: 24                                                   -->
+
+<!DOCTYPE html>
+<head>
+    <title>Compute Factorial</title>
+</head>
+<body>
+    <script>
+        const stepsFactorial = function(steps)
+        {
+            let fact = 1;
+
+            for(let x=1; x<=steps; x++)
+                fact *= x;
+
+            return fact;
+        }
+
+        let result = stepsFactorial(4);
+        console.log(result);
+    </script>
+</body>
+</html>

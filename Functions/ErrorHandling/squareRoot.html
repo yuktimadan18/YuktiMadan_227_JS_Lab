@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<head>
+    <title>Square Root</title>
+</head>
+<body>
+    <script>
+        function squareRoot(n)
+        {
+            return Math.sqrt(n);
+        }
+
+        try
+        {
+            let num = parseInt(prompt("Enter a number: "), 10);
+            if(typeof num != "number" || isNaN(num))
+                throw new Error("Invalid number input");
+            if(num<0)
+                throw new Error("Negative numbers are not allowed");
+            console.log(`Square of ${num} is ${squareRoot(num)}`);
+        }
+        catch(err)
+        {
+            console.log("Error message: "+ err.message);
+        }
+    </script>
+</body>
+</html>

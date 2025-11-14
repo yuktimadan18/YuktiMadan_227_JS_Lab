@@ -1,0 +1,42 @@
+<!-- Create an array of objects for students with properties: { id, name, marks }.
+Use map() to extract all student names.
+Use filter() to select students with marks > 50.
+Use reduce() to calculate the average marks.
+Use forEach() to print a report card format.                                -->
+
+<!DOCTYPE html>
+<head>
+    <title>Object Operations</title>
+</head>
+<body>
+    <script>
+        //Create an array of student objects
+        let students = [
+            {id : 1, name : "Aryan", marks : 94},
+            {id : 2, name : "Riya", marks : 87},
+            {id : 3, name : "Karan", marks : 67},
+            {id : 4, name : "Meena", marks : 42},
+            {id : 5, name : "Amit", marks : 35}
+        ];
+
+        //Use map() method to extract all student names
+        let studentNames = students.map(student => student.name);
+        console.log("Student Names:", studentNames);
+
+        //Use filter() method to select students with marks>50
+        let passedStudents = students.filter(student => student.marks>50);
+        console.log("Students with marks > 50:", passedStudents);
+
+        //Use reduce() method to calculate the average marks
+        let totalMarks = students.reduce((sum, student) => sum + student.marks, 0);
+        let averageMarks = totalMarks / students.length;
+        console.log("Average Marks:", averageMarks);
+
+        //Use forEach() method to print a report card format
+        console.log("\n Report Card:");
+        students.forEach(student => {
+            console.log(`ID: ${student.id} | Name: ${student.name} | Marks: ${student.marks}`);
+        });
+    </script>
+</body>
+</html>

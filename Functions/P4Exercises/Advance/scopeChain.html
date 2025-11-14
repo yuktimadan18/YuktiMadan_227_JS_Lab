@@ -1,0 +1,31 @@
+<!-- Scope Chain Debugging:
+Write code with three nested functions (outer, middle, inner) each having variables
+with the same name.
+Log which one gets accessed in the innermost function and explain why.     -->
+<!DOCTYPE html>
+<head>
+    <title>Scope Chain Debugging</title>
+</head>
+<body>
+    <script>
+        function outer() 
+        {
+            let value = "Outer Scope";
+
+            function middle() 
+            {
+                let value = "Middle Scope";
+
+                function inner() 
+                {
+                    let value = "Inner Scope";
+                    console.log("Accessed in inner:", value);
+                }
+                inner();
+            }
+            middle();
+        }
+        outer();
+    </script>
+</body>
+</html>

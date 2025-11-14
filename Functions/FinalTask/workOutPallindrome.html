@@ -1,0 +1,27 @@
+<!-- Extend functionality: accept a workout note string and check if it is a palindrome
+(ignore spaces and case).
+Input: &quot;Noon&quot;
+Output: true                                                          -->
+
+<!DOCTYPE html>
+<head>
+    <title>Work Out Pallindrome</title>
+</head>
+<body>
+    <script>
+        function isWorkoutPallindrome(note)
+        {
+            if(typeof note != "string")
+                throw new Error("Note must be a string");
+            const cleaned = note.replace(/\s+/g, "").toLowerCase();
+            const reversed = cleaned.split("").reverse().join("");
+
+            return cleaned == reversed;
+        }
+
+        console.log(isWorkoutPallindrome("Noon"));
+        console.log(isWorkoutPallindrome("Was it a car"));
+        console.log(isWorkoutPallindrome("Race car"));
+    </script>
+</body>
+</html>

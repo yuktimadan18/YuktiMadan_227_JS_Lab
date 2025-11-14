@@ -1,0 +1,36 @@
+<!-- Write an arrow function isPrimeHeartRate(hr) to check if a heart rate value is prime.
+Handle invalid input with try...catch.
+Input: isPrimeHeartRate(11)
+Output: true                                                 -->
+
+<!DOCTYPE html>
+<head>
+    <title>Check Prime Number</title>
+</head>
+<body>
+    <script>
+        const isPrimeHeartRate = (hr) =>
+        {
+            try
+            {
+                if(typeof hr != "number" || isNaN(hr))
+                    throw new Error("Invalid input: heart rate must be a number");
+
+                for(let x=2; x<=Math.sqrt(hr); x++)
+                    if(hr%x == 0)
+                        return false;
+                return true;
+            }
+            catch(err)
+            {
+                return err.message;
+            }
+        };
+
+        console.log(isPrimeHeartRate(11));
+        console.log(isPrimeHeartRate(12));
+        console.log(isPrimeHeartRate("abc"));
+        console.log(isPrimeHeartRate(1));
+    </script>
+</body>
+</html>

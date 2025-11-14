@@ -1,0 +1,24 @@
+<html>
+<head>
+    <title>Game NPC</title>
+</head>
+<body>
+    <script>
+        let health = parseInt(prompt("Enter player health (0 to 100): "));
+        let reputation = parseInt(prompt("Enter player reputation (-50 to 50): "));
+        let inventory = prompt("Enter inventory item (e.g., sword, magic ring, none): ").toLowerCase();
+        let attackedBefore = confirm("Did the player attack the NPC previously? ");
+
+        if(health<30 && reputation>20) 
+            console.log("NPC: You look injured, but you're honorable. I'll help you.");
+        else if(reputation<-40 && inventory.includes("legendary")) 
+            console.log("NPC: I don't trust you, but that item... fine, take what you need.");
+        else if(health>85 && attackedBefore) 
+            console.log("NPC: You dare return after attacking me? Prepare to fight!");
+        else if(inventory==="none" && reputation>=0) 
+            console.log("NPC: You have nothing, but you seem decent. Here's something to help.");
+        else 
+            console.log("NPC: I don’t know what to make of you. Let’s keep our distance.");
+    </script>
+</body>
+</html>

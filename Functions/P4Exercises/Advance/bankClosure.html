@@ -1,0 +1,51 @@
+<!-- Private Data with Closure:
+Make a createBankAccount function that stores a balance.
+Provide deposit, withdraw, and checkBalance methods.
+Ensure balance can’t be accessed directly from outside.    -->
+<!DOCTYPE html>
+<head>
+    <title>Bank Closure</title>
+</head>
+<body>
+    <script>
+        function createBankAccount(initialBalance = 0) 
+        {
+            let balance = initialBalance; // private variable, not accessible outside the function block
+
+            return{
+                deposit: function(amount){
+                    if(amount>0) 
+                    {
+                        balance += amount;
+                        return `Deposited: ${amount}, New Balance: ${balance}`;
+                    }
+                    return "Deposit amount must be positive!";
+                },
+                withdraw: function(amount){
+                    if(amount>balance) 
+                        return "Insufficient funds!";
+                    if(amount>0) 
+                    {
+                        balance -= amount;
+                        return `Withdrew: ${amount}, New Balance: ${balance}`;
+                    }
+                    return "Withdraw amount must be positive!";
+                },
+                checkBalance: function(){
+                    return `Current Balance: ${balance}`;
+                }
+            };
+        }
+
+        const myAccount = createBankAccount(100);
+
+        console.log(myAccount.checkBalance());  // Current Balance: 100
+        console.log(myAccount.deposit(50));     // Deposited: 50, New Balance: 150
+        console.log(myAccount.withdraw(70));    // Withdrew: 70, New Balance: 80
+        console.log(myAccount.withdraw(200));   // Insufficient funds!
+        console.log(myAccount.checkBalance());  // Current Balance: 80
+
+        console.log(myAccount.balance); // undefined
+    </script>
+</body>
+</html>

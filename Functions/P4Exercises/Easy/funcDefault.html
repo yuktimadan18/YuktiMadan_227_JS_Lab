@@ -1,0 +1,23 @@
+<!-- Function Declaration with Default Parameter:
+Write a function that takes a name and a language (default &quot;English&quot;) and
+prints &quot;Hello&quot; in that language.
+Example: (&quot;Alice&quot;, &quot;Spanish&quot;) → &quot;Hola, Alice!&quot;.   -->
+<!DOCTYPE html>
+<head>
+    <title>Default Parameters</title>
+</head>
+<body>
+    <script>
+        function showLanguage(name, language = "English")
+        {
+            if(language == "English")
+                console.log(`Hello, ${name}!`);
+            else if(language == "Spanish")
+                console.log(`Hola, ${name}!`);
+        }
+
+        showLanguage("Rohan","Spanish");
+        showLanguage("Mohan");
+    </script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!-- Create a function isFitnessPalindrome(id) to check if a fitness ID is a palindrome.
+Input: isFitnessPalindrome(1221)
+Output: true                                                       -->
+
+<!DOCTYPE html>
+<head>
+    <title>Check Pallindrome</title>
+</head>
+<body>
+    <script>
+        function isFitnessPallindrome(id)
+        {
+            const strId = id.toString();
+            const reversed = strId.split("").reverse().join("");
+
+            return strId == reversed;
+        }
+
+        console.log(isFitnessPallindrome(1221));
+        console.log(isFitnessPallindrome(1234));
+    </script>
+</body>
+</html>

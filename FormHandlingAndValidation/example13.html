@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Upload Validation</title>
+</head>
+<body>
+    <form onsubmit="return validateFile()">
+        <input type="file" id="resume">
+        <input type="submit" value="Upload">
+    </form>
+
+    <script>
+        function validateFile() {
+            let file = document.getElementById("resume").files[0];
+            if (!file) {
+                alert("Please upload a file");
+                return false;
+            }
+            if (file.size > 2 * 1024 * 1024) { // 2MB
+                alert("File too large (max 2MB)");
+                return false;
+            }
+            if (!file.name.endsWith(".pdf")) {
+                alert("Only PDF files are allowed");
+                return false;
+            }
+            return true;
+        }
+    </script>
+</body>
+</html>

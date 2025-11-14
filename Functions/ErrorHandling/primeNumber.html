@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<head>
+    <title>Check Prime Number</title>
+</head>
+<body>
+    <script>
+        function isPrime(n)
+        {
+            let x;
+            for(x=2; x<=n/2; x++)
+                if(n%x == 0)
+                    break;
+            if(n!=1 && x>n/2)
+                return true
+            return false
+        }
+
+        try
+        {
+            let num = parseInt(prompt("Enter a number: "), 10);
+            if(typeof num != "number" || isNaN(num))
+                throw new Error("Invalid number input");
+            if(num<0)
+                throw new Error("Negative numbers are not allowed");
+            if(isPrime(num))
+                console.log(`${num} is a prime number`);
+            else
+                console.log(`${num} is not a prime number`);
+        }
+        catch(err)
+        {
+            console.log("Error message: "+ err.message);
+        }
+    </script>
+</body>
+</html>

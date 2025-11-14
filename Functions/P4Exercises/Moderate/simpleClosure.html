@@ -1,0 +1,23 @@
+<!-- Simple Closure:
+Write a function createGreeter that stores a greeting message and returns a
+function that prints it when called.  -->
+<!DOCTYPE html>
+<head>
+    <title>Simple Closure</title>
+</head>
+<body>
+    <script>
+        function createGreeter(greeting) 
+        {
+            return function() {
+                console.log(greeting);
+            };
+        }
+        const greetHello = createGreeter("Hello, welcome!");
+        greetHello();  
+
+        const greetBye = createGreeter("Goodbye, see you soon!");
+        greetBye();    
+    </script>
+</body>
+</html>

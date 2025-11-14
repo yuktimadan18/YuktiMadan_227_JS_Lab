@@ -1,0 +1,233 @@
+<!-- Develop a menu-driven console application that offers users the following options:
+1. Compare calories of breakfast vs lunch.
+2. Generate factorial-based fitness challenge ID.
+3. Check if a workout note contains “Workout”.
+4. Store and retrieve a fitness note using a PIN (closure).
+5. Reverse a step count and check if it’s a palindrome.
+6. Check if a workout note is a palindrome (word-based).
+7. Find square root of burned calories with error handling.
+8. Check if a heart rate value is prime.
+Each option must:
+● Accept input.
+● Validate using error handling.
+● Display proper results.                                               -->
+
+<!DOCTYPE html>
+<head>
+    <title>Fitness Utility Console Application</title>
+</head>
+<body>
+    <script>
+        // 1. Compare calories of breakfast vs lunch
+        function compareCalories(breakfast, lunch) 
+        {
+            try 
+            {
+                if(isNaN(breakfast) || isNaN(lunch)) 
+                    throw "Calories must be in numbers.";
+                return breakfast > lunch 
+                ? `Breakfast (${breakfast} cal) had more than Lunch (${lunch} cal).` 
+                : `Lunch (${lunch} cal) had more than Breakfast (${breakfast} cal).`;
+            } 
+            catch(err) 
+            {
+                return `Error: ${err.message}`;
+            }
+        }
+
+        // 2. Factorial-based fitness challenge ID
+        function factorialChallengeID(num) 
+        {
+            try 
+            {
+                if(isNaN(num) || num < 0) 
+                    throw "Steps must be a non-negative number.";
+                let fact = 1;
+                for(let i=1; i<=num; i++) 
+                    fact *= i;
+                return `Challenge ID based on ${num} steps = ${fact}`;
+            } 
+            catch(err) 
+            {
+                return `Error: ${err.message}`;
+            }
+        }
+
+        // 3. Check if workout note contains "Workout"
+        function containsWorkout(note) 
+        {
+            try 
+            {
+                if(typeof note != "string") 
+                    throw "Note must be text.";
+                return note.includes("Workout") ? "Note contains 'Workout'" : "No 'Workout' found.";
+            } 
+            catch(err) 
+            {
+                return `Error: ${err.message}`;
+            }
+        }
+
+        // 4. Closure: Secure fitness note locker
+        function fitnessLocker(pin) 
+        {
+            const note = "Your private fitness note: Keep pushing!";
+            return function(enteredPin) 
+            {
+                return enteredPin == pin ? note : "Access Denied";
+            };
+        }
+
+        // 5. Reverse step count and check palindrome
+        function reverseStepsAndCheckPalindrome(steps) 
+        {
+            try 
+            {
+                if(isNaN(steps)) 
+                    throw "Steps must be a number.";
+                const sign = Math.sign(steps);
+                let reversed = Math.abs(steps).toString().split("").reverse().join("");
+                reversed = parseInt(reversed, 10) * sign;
+                const isPal = Math.abs(steps).toString() == Math.abs(reversed).toString();
+                return `Reversed: ${reversed}, Palindrome: ${isPal}`;
+            } 
+            catch(err) 
+            {
+                return `Error: ${err.message}`;
+            }
+        }
+
+        // 6. Palindrome check for workout note
+        function isNotePalindrome(note) 
+        {
+            try 
+            {
+                if(typeof note != "string") 
+                    throw "Note must be text.";
+                const clean = note.toLowerCase().replace(/[^a-z0-9]/g, "");
+                const reversed = clean.split("").reverse().join("");
+                return clean == reversed ? "Note is a Palindrome" : "Note is not a Palindrome";
+            } 
+            catch(err) 
+            {
+                return `Error: ${err.message}`;
+            }
+        }
+
+        // 7. Square root of calories burned
+        function calorieSqrt(calories) 
+        {
+            try 
+            {
+                if(isNaN(calories)) 
+                    throw "Calories must be a number.";
+                if(calories < 0) 
+                    throw "Negative calories are not allowed.";
+                return `Square root of ${calories} = ${Math.sqrt(calories)}`;
+            } 
+            catch(err) 
+            {
+                return `Error: ${err.message}`;
+            }
+        }
+
+        // 8. Prime heart rate check
+        function isPrimeHeartRate(hr) 
+        {
+            try 
+            {
+                if(isNaN(hr) || typeof hr != "number") 
+                    throw "Heart rate must be a number.";
+                for(let i=2; i<=Math.sqrt(hr); i++) 
+                    if (hr%i == 0) 
+                        return `${hr} is NOT prime.`; 
+                return `${hr} is PRIME.`;
+            } 
+            catch(err) 
+            {
+                return `Error: ${err.message}`;
+            }
+        }
+
+        // MENU
+        function menu()
+        {
+            let op;
+            do 
+            {
+                op = parseInt(prompt(
+                `------------------------------------------------------------
+                                   Fitness Console Menu                    
+                ------------------------------------------------------------             
+                1. Compare Calories (Breakfast vs Lunch)
+                2. Generate Factorial Fitness Challenge ID
+                3. Check if Workout Note Contains 'Workout'
+                4. Store and Retrieve Fitness Note (PIN)
+                5. Reverse Steps and Palindrome Check
+                6. Palindrome Check for Workout Note
+                7. Square Root of Calories Burned
+                8. Prime Heart Rate Check
+                9. Exit
+                ------------------------------------------------------------
+                Enter your choice:`
+                ));
+
+                switch(op) 
+                {
+                    case 1:
+                        let b = parseInt(prompt("Enter Breakfast Calories:"));
+                        let l = parseInt(prompt("Enter Lunch Calories:"));
+                        console.log(compareCalories(b, l));
+                        break;
+
+                    case 2:
+                        let steps = parseInt(prompt("Enter steps for challenge ID:"));
+                        console.log(factorialChallengeID(steps));
+                        break;
+
+                    case 3:
+                        let note = prompt("Enter your workout note:");
+                        console.log(containsWorkout(note));
+                        break;
+
+                    case 4:
+                        let pin = prompt("Set your PIN:");
+                        let locker = fitnessLocker(pin);
+                        let enteredPin = prompt("Enter PIN to view note:");
+                        console.log(locker(enteredPin));
+                        break;
+
+                    case 5:
+                        let sc = parseInt(prompt("Enter step count:"));
+                        console.log(reverseStepsAndCheckPalindrome(sc));
+                        break;
+
+                    case 6:
+                        let wn = prompt("Enter a workout note:");
+                        console.log(isNotePalindrome(wn));
+                        break;
+
+                    case 7:
+                        let cal = parseInt(prompt("Enter calories burned:"));
+                        console.log(calorieSqrt(cal));
+                        break;
+
+                    case 8:
+                        let hr = parseInt(prompt("Enter heart rate:"));
+                        console.log(isPrimeHeartRate(hr));
+                        break;
+
+                    case 9:
+                        console.log("Exiting Fitness Console. Stay healthy! ");
+                        break;
+
+                    default:
+                        console.log("Invalid choice. Try again.");
+                }
+
+            }while(op != 9);
+        }
+        menu();
+    </script>
+</body>
+</html>

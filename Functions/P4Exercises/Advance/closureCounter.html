@@ -1,0 +1,44 @@
+<!-- Closure for Counter:
+Create a closure-based counter that allows incrementing, decrementing, and
+resetting the count.
+Each operation should be a separate function. -->
+
+<!DOCTYPE html>
+<head>
+    <title>Closure Counter</title>
+</head>
+<body>
+    <script>
+        function createCounter() 
+        {
+            let count = 0; 
+
+            return{
+                increment: function(){
+                count++;
+                return count;
+                },
+                decrement: function(){
+                count--;
+                return count;
+                },
+                reset: function(){
+                count = 0;
+                return count;
+                },
+                getCount: function(){
+                return count;
+                }
+            };
+        }
+
+        const counter = createCounter();
+
+        console.log("Increment: "+ counter.increment()); // 1
+        console.log("Increment: "+ counter.increment()); // 2
+        console.log("Decrement: "+ counter.decrement()); // 1
+        console.log("Reset: "+ counter.reset());     // 0
+        console.log("Count: "+ counter.getCount());  // 0
+    </script>
+</body>
+</html>

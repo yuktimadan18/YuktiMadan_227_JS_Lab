@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Required Field Validation</title>
+</head>
+<body>
+    <form onsubmit="return validateRequired()">
+        <input type="text" id="username" name="username" placeholder="Enter username" required>
+        <input type="submit" value="Submit">
+    </form>
+    
+    <script>
+        function validateRequired() {
+            let username = document.getElementById("username").value;
+            if (username.trim() === "") {
+                alert("Username is required");
+                return false;
+            }
+            return true;
+        }
+    </script>
+</body>
+</html>

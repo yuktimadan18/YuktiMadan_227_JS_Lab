@@ -1,0 +1,38 @@
+<!-- Write reverseSteps(steps) that works for both positive and negative step counts (though
+negative is unusual, it’s allowed for testing).
+Use try...catch to handle invalid inputs.
+Input: reverseSteps(-4567)
+Output: -7654                                                      -->
+
+<!DOCTYPE html>
+<head>
+    <title>Display Reverse Number</title>
+</head>
+<body>
+    <script>
+        function reverseSteps(steps)
+        {
+            try
+            {
+                if(typeof steps != "number" || isNaN(steps))
+                    throw new Error("Invalid input: steps must be a number.");
+
+                const sign = Math.sign(steps);
+
+                let reversed = Math.abs(steps).toString().split("").reverse().join("");
+                reversed = parseInt(reversed, 10);
+
+                return sign * reversed;
+            }
+            catch(err)
+            {
+                return err.message;
+            }
+        }
+
+        console.log(reverseSteps(-4567));
+        console.log(reverseSteps(1234));
+        console.log(reverseSteps("abc"));
+    </script>
+</body>
+</html>

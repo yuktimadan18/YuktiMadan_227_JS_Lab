@@ -1,0 +1,23 @@
+<!-- Scope Example – Variable Shadowing:
+Create a function where a local variable has the same name as a global variable.
+Show how JavaScript chooses which one to use.     -->
+<!DOCTYPE html>
+<head>
+    <title>Variable Shadowing</title>
+</head>
+<body>
+    <script>
+        // Global variable
+        let message = "I am the Global Message";
+
+        function showMessage()
+        {   
+            //Local variable
+            let message = "I am the Local Message";
+            console.log("Inside function:", message); 
+        }
+        showMessage();
+        console.log("Outside function:", message); 
+    </script>
+</body>
+</html>

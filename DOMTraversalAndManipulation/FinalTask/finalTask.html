@@ -1,0 +1,129 @@
+<!-- 1. To-Do List With a Twist (Emoji Mode)
+● What to build:
+A basic to-do list, but every task must have an emoji selected from a
+dropdown.
+● DOM Skills:
+getElementById to get input and dropdown values.
+createElement to create new list items.
+appendChild to display the task with emoji.
+querySelector to select tasks for edit/remove.
+
+Extra fun challenge:
+● Add a “Random Emoji” button that automatically selects a random emoji
+from a predefined array.                                                     -->
+
+<!DOCTYPE html>
+<head>
+    <title>Emoji To-Do List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            width: 350px;
+        }
+        h2 {
+            margin-top: 0;
+            text-align: center;
+        }
+        input, select, button {
+            margin: 5px 0;
+            padding: 8px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            width: 100%;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            background: #eee;
+            margin: 5px 0;
+            padding: 8px;
+            border-radius: 6px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .btn-remove {
+            background: crimson;
+            color: #fff;
+            border: none;
+            padding: 4px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Emoji To-Do List ✅</h2>
+        <input type="text" id="taskInput" placeholder="Enter a task">
+        <select id="emojiSelect">
+        <option value="😀">😀</option>
+        <option value="🔥">🔥</option>
+        <option value="💡">💡</option>
+        <option value="✅">✅</option>
+        <option value="🚀">🚀</option>
+        <option value="🍕">🍕</option>
+        <option value="📚">📚</option>
+        <option value="⚡">⚡</option>
+        <option value="🌟">🌟</option>
+        
+        </select>
+        <button id="randomEmojiBtn">Random Emoji 🎲</button>
+        <button id="addTaskBtn">Add Task</button>
+
+        <ul id="taskList"></ul>
+    </div>
+
+    <script>
+        const taskInput = document.getElementById("taskInput");
+        const emojiSelect = document.getElementById("emojiSelect");
+        const addTaskBtn = document.getElementById("addTaskBtn");
+        const randomEmojiBtn = document.getElementById("randomEmojiBtn");
+        const taskList = document.getElementById("taskList");
+
+        // Predefined emojis
+        const emojiArray = ["😀","🔥","💡","✅","🎯","🚀","🍕","📚","⚡","🌟"];
+
+        // Add Task
+        addTaskBtn.addEventListener("click", () => {
+            const taskText = taskInput.value.trim();
+            const selectedEmoji = emojiSelect.value;
+
+            if(taskText === "") return alert("Please enter a task!");
+
+            const li = document.createElement("li");
+            li.innerHTML = `${selectedEmoji} ${taskText} 
+                <button class="btn-remove">Remove</button>`;
+
+            // Remove button functionality
+            li.querySelector(".btn-remove").addEventListener("click", () => {
+                li.remove();
+            });
+
+            taskList.appendChild(li);
+            taskInput.value = "";
+        });
+
+        // Random Emoji Selector
+        randomEmojiBtn.addEventListener("click", () => {
+            const random = emojiArray[Math.floor(Math.random() * emojiArray.length)];
+            emojiSelect.value = random;
+        });
+    </script>
+</body>
+</html>

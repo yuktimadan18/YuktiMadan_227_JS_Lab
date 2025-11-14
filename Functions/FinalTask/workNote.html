@@ -1,0 +1,21 @@
+<!-- Write an arrow function checkWorkoutNote(note) that returns true if the note contains
+the word “Workout”.
+Input: checkWorkoutNote(&quot;Today’s Workout was intense!&quot;)
+Output: true                                                      -->
+
+<!DOCTYPE html>
+<head>
+    <title>Check Work Out Note</title>
+</head>
+<body>
+    <script>
+        const checkWorkoutNote = (note) => 
+        {
+            return note.includes("Workout");
+        };
+
+        let result = checkWorkoutNote("Today's Workout was intense!");
+        console.log(result);
+    </script>
+</body>
+</html>

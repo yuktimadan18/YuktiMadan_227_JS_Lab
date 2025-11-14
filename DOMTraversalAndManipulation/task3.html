@@ -1,0 +1,71 @@
+<!-- Task 3: Edit a Task
+Add an "Edit" button beside each task.
+Clicking it allows the user to change the task content.           -->
+
+<!DOCTYPE html>
+<head>
+    <title>Add and Edit Tasks from List</title>
+</head>
+<body>
+    <h2>Task List</h2>
+    <input type="text" id="itemInput" placeholder="Enter a task" />
+    <button id="addButton">Add Task</button>
+    
+    <ul id="itemList"></ul>
+    <script>
+        const input = document.getElementById('itemInput');
+        const button = document.getElementById('addButton');
+        const list = document.getElementById('itemList');
+
+        button.addEventListener('click', () => {
+            const taskText = input.value.trim();
+            if (taskText === '') return;
+
+            const li = document.createElement('li');
+
+            const span = document.createElement('span');
+            span.textContent = taskText;
+            li.appendChild(span);
+
+            const editBtn = document.createElement('button');
+            editBtn.textContent = 'Edit';
+            editBtn.addEventListener('click', () => {
+                if (editBtn.textContent === 'Edit') {
+                    const inputEdit = document.createElement('input');
+                    inputEdit.type = 'text';
+                    inputEdit.value = span.textContent;
+                    li.insertBefore(inputEdit, span);
+                    li.removeChild(span);
+                    editBtn.textContent = 'Save';
+                    inputEdit.focus();
+                } 
+                else {
+                    const inputEdit = li.querySelector('input');
+                    const newText = inputEdit.value.trim();
+                    if (newText === '') {
+                        alert('Task cannot be empty!');
+                        inputEdit.focus();
+                        return;
+                    }
+                    span.textContent = newText;
+                    li.insertBefore(span, inputEdit);
+                    li.removeChild(inputEdit);
+                    editBtn.textContent = 'Edit';
+                }
+            });
+            li.appendChild(editBtn);
+
+            const deleteBtn = document.createElement('button');
+            deleteBtn.textContent = 'Delete';
+            deleteBtn.addEventListener('click', () => {
+                list.removeChild(li);
+            });
+            li.appendChild(deleteBtn);
+            list.appendChild(li);
+
+            input.value = '';
+            input.focus();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitZone Gym Admission Form</title>
+    <style>
+        /* ====== GENERAL LAYOUT ====== */
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f7f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        form {
+            background: #fff;
+            padding: 30px 40px;
+            border-radius: 10px;
+            width: 450px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 25px;
+            color: #333;
+        }
+
+        /* ====== FORM ELEMENTS ====== */
+        label {
+            display: block;
+            font-weight: 600;
+            margin-top: 15px;
+            color: #222;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 8px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: #1976d2;
+            box-shadow: 0 0 5px rgba(25, 118, 210, 0.3);
+        }
+
+        /* ====== VALIDATION FEEDBACK ====== */
+        .help {
+            font-size: 13px;
+            margin-top: 5px;
+            min-height: 18px;
+        }
+
+        .help.error {
+            color: #c62828;
+        }
+
+        .help.valid {
+            color: #2e7d32;
+        }
+
+        input.invalid, select.invalid {
+            border-color: #c62828;
+        }
+
+        input.valid, select.valid {
+            border-color: #2e7d32;
+        }
+
+        /* ====== BUTTONS ====== */
+        .btn-row {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 25px;
+        }
+
+        button {
+            width: 48%;
+            padding: 10px;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        #submitBtn {
+            background: #1976d2;
+            color: white;
+        }
+
+        #submitBtn:hover:not(:disabled) {
+            background: #1359a0;
+        }
+
+        #resetBtn {
+            background: #e53935;
+            color: white;
+        }
+
+        #resetBtn:hover {
+            background: #c62828;
+        }
+
+        #submitBtn:disabled {
+            background: #9e9e9e;
+            cursor: not-allowed;
+        }
+
+        /* ====== PREVIEW BOX ====== */
+        .preview {
+            margin-top: 20px;
+            padding: 15px;
+            background: #e8f5e9;
+            border: 1px solid #c8e6c9;
+            border-radius: 6px;
+            display: none;
+            font-size: 14px;
+        }
+
+        /* ====== RADIO BUTTONS ====== */
+        .gender-group {
+            margin-top: 8px;
+        }
+
+        .gender-group label {
+            font-weight: normal;
+            margin-right: 15px;
+        }
+    </style>
+</head>
+<body>
+    <form id="gymForm" name="gymForm" novalidate>
+    <h2>🏋️ FitZone Gym Admission</h2>
+
+    <!-- Full Name -->
+    <label for="fullName">Full Name:</label>
+    <input id="fullName" name="fullName" type="text" required />
+    <div id="fullNameMsg" class="help"></div>
+
+    <!-- Email -->
+    <label for="email">Email:</label>
+    <input id="email" name="email" type="email" required />
+    <div id="emailMsg" class="help"></div>
+
+    <!-- Age -->
+    <label for="age">Age:</label>
+    <input id="age" name="age" type="number" required min="18" max="60" />
+    <div id="ageMsg" class="help"></div>
+
+    <!-- Gender -->
+    <label>Gender:</label>
+    <div class="gender-group">
+        <label><input type="radio" name="gender" value="Male" /> Male</label>
+        <label><input type="radio" name="gender" value="Female" /> Female</label>
+        <label><input type="radio" name="gender" value="Other" /> Other</label>
+    </div>
+    <div id="genderMsg" class="help"></div>
+
+    <!-- Membership -->
+    <label for="membership">Membership Type:</label>
+    <select id="membership" name="membership" required>
+        <option value="">-- Select Membership --</option>
+        <option value="Monthly">Monthly</option>
+        <option value="Quarterly">Quarterly</option>
+        <option value="Yearly">Yearly</option>
+    </select>
+    <div id="membershipMsg" class="help"></div>
+
+    <!-- Password -->
+    <label for="password">Password:</label>
+    <input id="password" name="password" type="password" required />
+    <div id="passwordMsg" class="help"></div>
+
+    <!-- Confirm Password -->
+    <label for="confirmPassword">Confirm Password:</label>
+    <input id="confirmPassword" name="confirmPassword" type="password" required />
+    <div id="confirmMsg" class="help"></div>
+
+    <!-- Phone -->
+    <label for="phone">Phone:</label>
+    <input id="phone" name="phone" type="text" required />
+    <div id="phoneMsg" class="help"></div>
+
+    <!-- DOB -->
+    <label for="dob">Date of Birth:</label>
+    <input id="dob" name="dob" type="date" required />
+    <div id="dobMsg" class="help"></div>
+
+    <!-- Photo -->
+    <label for="photo">Profile Photo (.jpg/.png ≤ 1MB):</label>
+    <input id="photo" name="photo" type="file" accept=".jpg,.jpeg,.png" required />
+    <div id="photoMsg" class="help"></div>
+
+    <!-- Terms -->
+    <label style="margin-top: 15px;">
+        <input id="terms" name="terms" type="checkbox" />
+        I accept Terms & Conditions
+    </label>
+    <div id="termsMsg" class="help"></div>
+
+    <!-- Buttons -->
+    <div class="btn-row">
+        <button id="submitBtn" type="submit" disabled>Submit</button>
+        <button id="resetBtn" type="reset">Reset</button>
+    </div>
+
+    <!-- Preview Box -->
+    <div id="preview" class="preview"></div>
+    </form>
+
+    <script>
+        /* =========================================================
+        ACCESSING FORM AND ELEMENTS
+        ========================================================= */
+        const form = document.forms["gymForm"];
+        const get = id => document.getElementById(id);
+        const submitBtn = get("submitBtn");
+        const preview = get("preview");
+
+        /* =========================================================
+        VALIDATION PATTERNS
+        ========================================================= */
+        const nameRegex = /^[A-Za-z ]{3,}$/;
+        const emailRegex = /^[\w.-]+@[\w.-]+\.\w{2,}$/;
+        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#\$%\^&\*]).{6,}$/;
+        const phoneRegex = /^\d{10}$/;
+
+        /* =========================================================
+        VALIDATION FUNCTIONS
+        ========================================================= */
+        const validators = {
+        fullName: v => {
+            v = v.trim();
+            if (!v) return "❌ Full name is required.";
+            if (!nameRegex.test(v)) return "❌ Must be at least 3 letters (alphabets only).";
+            return "";
+        },
+        email: v => {
+            v = v.trim();
+            if (!v) return "❌ Email is required.";
+            if (!emailRegex.test(v)) return "❌ Invalid email format.";
+            return "";
+        },
+        age: v => {
+            const n = Number(v);
+            if (!v) return "❌ Age is required.";
+            if (isNaN(n) || n < 18 || n > 60) return "❌ Age must be between 18–60.";
+            return "";
+        },
+        gender: () => {
+            return [...form.gender].some(r => r.checked)
+            ? ""
+            : "❌ Please select gender.";
+        },
+        membership: v => (v ? "" : "❌ Please select membership."),
+        password: v => {
+            if (!v) return "❌ Password is required.";
+            if (!passwordRegex.test(v))
+            return "❌ Weak password — include upper, lower, number, special char.";
+            return "";
+        },
+        confirmPassword: v => {
+            const pw = get("password").value;
+            if (!v) return "❌ Please confirm password.";
+            if (v !== pw) return "❌ Passwords do not match.";
+            return "";
+        },
+        phone: v => {
+            v = v.trim();
+            if (!v) return "❌ Phone number is required.";
+            if (!phoneRegex.test(v)) return "❌ Must be exactly 10 digits.";
+            return "";
+        },
+        dob: v => {
+            if (!v) return "❌ DOB is required.";
+            const d = new Date(v);
+            const today = new Date();
+            if (d > today) return "❌ DOB cannot be in the future.";
+            return "";
+        },
+        photo: f => {
+            if (!f) return "❌ Please upload a photo.";
+            const allowed = ["image/jpeg", "image/png"];
+            if (!allowed.includes(f.type)) return "❌ Only JPG/PNG allowed.";
+            if (f.size > 1024 * 1024) return "❌ File must be ≤ 1MB.";
+            return "";
+        },
+        terms: c => (c ? "" : "❌ Please accept terms to continue.")
+        };
+
+        /* =========================================================
+        HELPER: SHOW VALIDATION MESSAGE
+        ========================================================= */
+        function showMessage(id, msg, valid = false) {
+        const el = get(id + "Msg");
+        el.textContent = msg || "✅ Looks good!";
+        el.className = "help " + (msg ? "error" : "valid");
+        const input = get(id);
+        if (input) {
+            input.classList.toggle("invalid", !!msg);
+            input.classList.toggle("valid", !msg);
+        }
+        }
+
+        /* =========================================================
+        LIVE VALIDATION (oninput/onblur)
+        ========================================================= */
+        function attachLive(id, validator) {
+        const el = get(id);
+        if (!el) return;
+        function check() {
+            const error = validator(el.value);
+            showMessage(id, error);
+            checkAllValid();
+        }
+        el.addEventListener("input", check);
+        el.addEventListener("blur", check);
+        }
+
+        attachLive("fullName", validators.fullName);
+        attachLive("email", validators.email);
+        attachLive("age", validators.age);
+        attachLive("password", validators.password);
+        attachLive("confirmPassword", validators.confirmPassword);
+        attachLive("phone", validators.phone);
+        attachLive("dob", validators.dob);
+
+        /* =========================================================
+        OTHER EVENTS: onchange for select, file, checkbox, radio
+        ========================================================= */
+        form.membership.onchange = () => {
+        const e = validators.membership(form.membership.value);
+        showMessage("membership", e);
+        checkAllValid();
+        };
+
+        form.photo.onchange = () => {
+        const f = form.photo.files[0];
+        const e = validators.photo(f);
+        showMessage("photo", e);
+        checkAllValid();
+        };
+
+        form.terms.onchange = () => {
+        const e = validators.terms(form.terms.checked);
+        showMessage("terms", e);
+        checkAllValid();
+        };
+
+        form.addEventListener("change", e => {
+        if (e.target.name === "gender") {
+            const msg = validators.gender();
+            const el = get("genderMsg");
+            el.textContent = msg || "✅ Gender selected.";
+            el.className = "help " + (msg ? "error" : "valid");
+            checkAllValid();
+        }
+        });
+
+        /* =========================================================
+        VALIDATION CHECK FOR ENTIRE FORM
+        ========================================================= */
+        function isFormValid() {
+        const file = form.photo.files[0];
+        return (
+            !validators.fullName(form.fullName.value) &&
+            !validators.email(form.email.value) &&
+            !validators.age(form.age.value) &&
+            !validators.gender() &&
+            !validators.membership(form.membership.value) &&
+            !validators.password(form.password.value) &&
+            !validators.confirmPassword(form.confirmPassword.value) &&
+            !validators.phone(form.phone.value) &&
+            !validators.dob(form.dob.value) &&
+            !validators.photo(file) &&
+            !validators.terms(form.terms.checked)
+        );
+        }
+
+        function checkAllValid() {
+        submitBtn.disabled = !isFormValid();
+        }
+
+        /* =========================================================
+        FORM SUBMISSION + RESET BEHAVIOR
+        ========================================================= */
+        form.onsubmit = e => {
+        e.preventDefault();
+        if (!isFormValid()) {
+            alert("❌ Please fix all errors before submitting!");
+            return;
+        }
+
+        preview.innerHTML = `
+            ✅ <b>Form submitted successfully! Welcome to FitZone Gym.</b><br><br>
+            Name: ${form.fullName.value}<br>
+            Email: ${form.email.value}<br>
+            Membership: ${form.membership.value}
+        `;
+        preview.style.display = "block";
+
+        form.reset();
+        submitBtn.disabled = true;
+        document.querySelectorAll(".help").forEach(x => (x.textContent = ""));
+        document.querySelectorAll("input, select").forEach(x =>
+            x.classList.remove("valid", "invalid")
+        );
+        };
+
+        form.onreset = () => {
+        setTimeout(() => {
+            preview.style.display = "none";
+            document.querySelectorAll(".help").forEach(x => (x.textContent = ""));
+            document.querySelectorAll("input, select").forEach(x =>
+            x.classList.remove("valid", "invalid")
+            );
+            submitBtn.disabled = true;
+        }, 10);
+        };
+
+        console.log("Total form elements:", form.length);
+    </script>
+</body>
+</html>

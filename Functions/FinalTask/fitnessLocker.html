@@ -1,0 +1,37 @@
+<!-- Build a closure fitnessLocker(pin) that stores a user’s fitness note.
+The note should be revealed only if the correct pin is provided.
+Input:
+
+const locker = fitnessLocker(&quot;9999&quot;);
+console.log(locker(&quot;1234&quot;));
+console.log(locker(&quot;9999&quot;));
+Output:
+Access Denied
+(User’s fitness note)                                        -->
+
+<!DOCTYPE html>
+<head>
+    <title>Fitness Locker</title>
+</head>
+<body>
+    <script>
+        function fitnessLocker(pin)
+        {
+            const fitnessNote = "User's fitness note";
+
+            return function(enteredPin)
+            {
+                if(enteredPin == pin)
+                    return fitnessNote;
+                else
+                    return "Access Denied";
+            }
+        }
+
+        const locker = fitnessLocker("9999");
+
+        console.log(locker("1234"));
+        console.log(locker("9999"));
+    </script>
+</body>
+</html>

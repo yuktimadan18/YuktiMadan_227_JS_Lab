@@ -1,0 +1,31 @@
+<!-- Task 1: Add Items to a List
+Create an input field and a button.
+When the button is clicked, add the input value to a list.             -->
+
+<!DOCTYPE html>
+<head>
+    <title>Add Items to List</title>
+</head>
+<body>
+    <input type="text" id="itemInput" placeholder="Enter item" />
+    <button id="addButton">Add Item</button>
+
+    <ul id="itemList"></ul>
+    <script>
+        const input = document.getElementById('itemInput');
+        const button = document.getElementById('addButton');
+        const list = document.getElementById('itemList');
+
+        button.addEventListener('click', () => {
+            const itemText = input.value.trim();
+            if (itemText !== '') {
+                const li = document.createElement('li');
+                li.textContent = itemText;
+                list.appendChild(li);
+                input.value = '';  
+                input.focus();     
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!-- Create an array of student ages and use push() to add a new age.
+Use pop() to remove the last age and display the array.
+Print the length of the array.
+Use map() to calculate double of each age.
+Challenge: Use map() to find the cube of each element.               -->
+
+<!DOCTYPE html>
+<head>
+    <title>Array Operations</title>
+</head>
+<body>
+    <script>
+        //Create an array of student ages
+        let studentAges = [15, 16, 17, 18];
+        console.log("Initial Ages:", studentAges);
+
+        //Use push() method to add a new age
+        studentAges.push(19);
+        console.log("After push:", studentAges);
+
+        //Use pop() method to remove the last age
+        studentAges.pop();
+        console.log("After pop:", studentAges);
+
+        //Print the length of the array
+        console.log("Length of the array:", studentAges.length);
+
+        //Use map() method to calculate double of each age 
+        let doubledAges = studentAges.map(age => age * 2);
+        console.log("Doubled Ages:", doubledAges);
+
+        //Challenge: Use map() method to find the cube of each element
+        let cubedAges = studentAges.map(age => age ** 3);
+        console.log("Cubed Ages:", cubedAges);
+    </script>
+</body>
+</html>

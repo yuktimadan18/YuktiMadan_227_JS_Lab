@@ -1,0 +1,38 @@
+<html>
+<head>
+    <title>ATM Simulator</title>
+</head>
+<body>
+    <script>
+        let balance = 10000;    // initial balance
+        let transaction = prompt("Enter transaction type (withdraw, deposit, balance): ");
+
+        switch(transaction.toLowerCase()) 
+        {
+            case "withdraw":
+                let withdrawAmount = parseFloat(prompt("Enter amount to withdraw: "));
+                if (withdrawAmount <= balance) 
+                {
+                    balance -= withdrawAmount;
+                    console.log(`Withdrawal successful. New balance: ₹${balance}`);
+                } 
+                else
+                    console.log("Insufficient balance.");
+                break;
+
+            case "deposit":
+                let depositAmount = parseFloat(prompt("Enter amount to deposit: "));
+                balance += depositAmount;
+                console.log(`Deposit successful. New balance: ₹${balance}`);
+                break;
+
+            case "balance":
+                console.log(`Your current balance is: ₹${balance}`);
+                break;
+
+            default:
+                console.log("Invalid transaction type.");
+        }
+    </script>
+</body>
+</html>

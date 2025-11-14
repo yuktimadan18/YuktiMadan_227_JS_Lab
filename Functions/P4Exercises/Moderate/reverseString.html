@@ -1,0 +1,22 @@
+<!-- Function Expression – Reverse String:
+Make a function expression that reverses a string without using built-in .reverse().  -->
+<!DOCTYPE html>
+<head>
+    <title>Display Reverse String</title>
+</head>
+<body>
+    <script>
+        const reverseString = function(str)
+        {
+            let rev = "";
+            for(let x=str.length-1; x>=0; x--)
+            {
+                rev += str[x];
+            }
+            console.log("Reverse string: "+ rev);
+        }
+
+        reverseString("Hello World!");
+    </script>
+</body>
+</html>

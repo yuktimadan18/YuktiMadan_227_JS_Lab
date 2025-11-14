@@ -1,0 +1,59 @@
+<!-- Task 2: Delete Items from a List
+Add a delete button beside each task.
+Clicking it removes that task.                -->
+
+<!DOCTYPE html>
+<head>
+    <title>Add and Delete Items from List</title>
+    <style>
+        li {
+            margin: 8px 0;
+        }
+    
+        button.delete-btn {
+            margin-left: 12px;
+            color: white;
+            background-color: red;
+            border: none;
+            padding: 4px 8px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" id="itemInput" placeholder="Enter item" />
+    <button id="addButton">Add Item</button>
+
+    <ul id="itemList"></ul>
+    <script>
+        const input = document.getElementById('itemInput');
+    const button = document.getElementById('addButton');
+    const list = document.getElementById('itemList');
+
+    button.addEventListener('click', () => {
+        const itemText = input.value.trim();
+        if (itemText !== '') {
+            const li = document.createElement('li');
+            
+            li.textContent = itemText;
+
+            const deleteBtn = document.createElement('button');
+            deleteBtn.textContent = 'Delete';
+            deleteBtn.className = 'delete-btn';
+
+            
+            deleteBtn.addEventListener('click', () => {
+                list.removeChild(li);
+            });
+
+            li.appendChild(deleteBtn);
+            list.appendChild(li);
+        
+            input.value = '';
+            input.focus();
+        }
+    });
+    </script>
+</body>
+</html>

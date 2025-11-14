@@ -1,0 +1,37 @@
+<!-- Mixed Function Types:
+Function Declaration: Generates a random number.
+Function Expression: Checks if the number is prime.
+Arrow Function: Prints &quot;Prime&quot; or &quot;Not Prime&quot; based on the result.
+Use all three in sequence.      -->
+<!DOCTYPE html>
+<head>
+    <title>Mixed Function Types</title>
+</head>
+<body>
+    <script>
+        function generateRandomNumber(limit = 50) 
+        {
+            return Math.floor(Math.random() * limit) + 1;
+        }
+
+        const isPrime = function(n) 
+        {
+            if(n<2) 
+                return false;
+            for(let x=2; x<=n/2; x++) 
+                if(n%x === 0) 
+                    return false;
+            return true;
+        };
+
+        const printPrimeStatus = (num, primeCheck) => 
+        {
+            console.log(`${num} → ${primeCheck ? "Prime" : "Not Prime"}`);
+        };
+
+        let randomNum = generateRandomNumber();
+        let primeCheck = isPrime(randomNum);
+        printPrimeStatus(randomNum, primeCheck);
+    </script>
+</body>
+</html>
