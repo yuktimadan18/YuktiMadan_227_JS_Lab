@@ -1,0 +1,21 @@
+<!-- Task 3: Validate Email Address
+● Use regex /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/
+Example:
+let email = &quot;student@example.com&quot;;
+console.log(/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/.test(email));
+// Output: true                                                                -->
+
+<!DOCTYPE html>
+<head>
+    <title>Validate Email</title>
+</head>
+<body>
+    <script>
+        //Regex validation
+        let email = "student@example.com";
+        let isValid = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9._]+\.[A-Za-z]{2,}$/.test(email);
+
+        console.log(isValid);
+    </script>
+</body>
+</html>

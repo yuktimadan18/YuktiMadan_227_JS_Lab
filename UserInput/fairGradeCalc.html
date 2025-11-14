@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Fair Grader</title>
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            padding: 20px;
+        }
+
+        h1{
+            text-align: center;
+        }
+
+        .form-section{
+            background: #fff;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.2);
+        }
+
+        #studentList{
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .student-card{
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .highlight{
+            box-shadow: 0 0 15px green;
+            transform: scale(1.05);
+        }
+
+        .results{
+            margin-top: 10px;
+            padding: 10px;
+            background: #eaeaea;
+            border-radius: 5px;
+        }
+
+        /* Animation */
+        @keyframes fadeIn{
+            from {opacity: 0;}
+            to {opacity: 1;}
+        }
+
+        .animate{
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        button{
+            margin-top: 10px;
+            padding: 10px;
+            border: none;
+            background: #007BFF;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover{
+            background: #0056b3;
+        }
+
+        footer{
+            text-align: center;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>The Fair Grader</h1>
+
+    <!-- Add Student Form -->
+    <div class="form-section">
+        <label>Student Name: </label>
+        <input type="text" id="name"><br><br>
+
+        <label>Roll Number: </label>
+        <input type="number" id="roll"><br><br>
+
+        <label>Subject 1 (Range): </label>
+        <input type="range" min="0" max="100" value="50" id="s1"><br><br>
+
+        <label>Subject 2 (Manual Input): </label>
+        <input type="number" min="0" max="100" id="s2"><br><br>
+
+        <label>Subject 3 (Dropdown): </label>
+        <select id="subjectDropdown"></select>
+        <input type="number" min="0" max="100" id="s3marks" placeholder="Marks"><br><br>
+
+        <button onclick="addStudent()">Add Student</button>
+        <button onclick="calculateResults()">Calculate Results</button>
+    </div>
+
+    <!-- Display Student Cards -->
+    <div id="studentList"></div>
+
+    <footer>
+        Developed by Aryan Koshal <br>
+        Completed at: <span id="time"></span>
+    </footer>
+
+    <script>
+        // Subject options
+        const subjects = ["Physics", "Chemistry", "Mathematics", "English", "Computer Science"];
+
+        // Populate subject dropdown
+        const subjectDropdown = document.getElementById('subjectDropdown');
+        subjects.forEach(sub => {
+            let opt = document.createElement('option');
+            opt.value = sub;
+            opt.text = sub;
+            subjectDropdown.appendChild(opt);
+        });
+
+        // Store student data
+        let studentMarks = [];
+
+        function addStudent() {
+            const name = document.getElementById('name').value.trim();
+            const roll = document.getElementById('roll').value.trim();
+            const s1 = parseInt(document.getElementById('s1').value);
+            const s2 = parseInt(document.getElementById('s2').value);
+            const s3 = parseInt(document.getElementById('s3marks').value);
+
+            // Validation
+            if (!name || !roll || isNaN(s1) || isNaN(s2) || isNaN(s3)) {
+                alert("Please fill all fields correctly.");
+                return;
+            }
+            if (s2 < 0 || s2 > 100 || s3 < 0 || s3 > 100) {
+                alert("Marks must be between 0 and 100.");
+                return;
+            }
+
+            // Add student to array
+            studentMarks.push({ name, roll, s1, s2, s3 });
+
+            // Display cards
+            displayStudents();
+
+            // Clear inputs
+            document.getElementById('name').value = '';
+            document.getElementById('roll').value = '';
+            document.getElementById('s2').value = '';
+            document.getElementById('s3marks').value = '';
+        }
+
+        function displayStudents() {
+            const list = document.getElementById('studentList');
+            list.innerHTML = '';
+            studentMarks.forEach((st, index) => {
+                const card = document.createElement('div');
+                card.classList.add('student-card');
+                card.innerHTML = `
+                    <h3>${st.name}</h3>
+                    <p>Roll No: ${st.roll}</p>
+                    <div class="results" id="result-${index}">Marks added. Calculate results to view grades.</div>
+                `;
+                list.appendChild(card);
+            });
+        }
+
+        function calculateResults() {
+            let highestAvg = 0;
+            let topIndex = -1;
+
+            studentMarks.forEach((st, index) => {
+                const avg = ((st.s1 + st.s2 + st.s3) / 3).toFixed(2);
+
+                // Grade (if-else)
+                let grade;
+                if (avg >= 90) grade = 'A';
+                else if (avg >= 75) grade = 'B';
+                else if (avg >= 50) grade = 'C';
+                else grade = 'F';
+
+                // Remark (switch-case)
+                let remark;
+                switch(true) {
+                    case (avg >= 90): remark = "Excellent"; break;
+                    case (avg >= 75): remark = "Good"; break;
+                    case (avg >= 50): remark = "Needs Improvement"; break;
+                    default: remark = "Fail";
+                }
+
+                // Update card
+                const resultDiv = document.getElementById(`result-${index}`);
+                resultDiv.innerHTML = `
+                    Average: ${avg}<br>
+                    Grade: ${grade}<br>
+                    Remark: ${remark}
+                `;
+                resultDiv.classList.add('animate');
+
+                if (avg > highestAvg) {
+                    highestAvg = avg;
+                    topIndex = index;
+                }
+            });
+
+            // Highlight top scorer
+            document.querySelectorAll('.student-card').forEach(card => card.classList.remove('highlight'));
+            if (topIndex !== -1) {
+                document.querySelectorAll('.student-card')[topIndex].classList.add('highlight');
+            }
+
+            // Completion time
+            document.getElementById('time').innerText = new Date().toLocaleTimeString();
+        }
+    </script>
+</body>
+</html>

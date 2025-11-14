@@ -1,0 +1,33 @@
+<!-- Task 4: Find Duplicate Words 
+● Input: "This is is a test test"
+
+● Output: ["is", "test"]
+
+Hint:
+
+let text = "This is is a test test";
+
+let dupRegex = /\b(\w+)\s+\1\b/g;
+
+console.log(text.match(dupRegex)); // ["is", "test"]             -->
+
+<!DOCTYPE html>
+<head>
+    <title>Display Duplicate Words</title>
+</head>
+<body>
+    <script>
+        //Input text
+        let text = "This is is a test test";
+
+        //Regex to find duplicate consecutive words
+        let dupRegex = /\b(\w+)\s+\1\b/g;
+
+        //Match duplicates
+        let duplicates = text.match(dupRegex);
+
+        //Displaying duplicate values
+        console.log(duplicates);    //["is", "test"]
+    </script>
+</body>
+</html>

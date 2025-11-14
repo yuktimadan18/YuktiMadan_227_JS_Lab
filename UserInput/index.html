@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>User Form</title>
+</head>
+<body>
+  <h2>User Details Form</h2>
+
+  <form id="userForm">
+    <!-- Email Input -->
+    Email: <input type="email" id="email" required><br><br>
+
+    <!-- Gender (Radio Buttons) -->
+    Gender: <br>
+    <input type="radio" name="gender" value="Male"> Male
+    <input type="radio" name="gender" value="Female"> Female<br><br>
+
+    <!-- Hobbies (Checkboxes) -->
+    Hobbies: <br>
+    <input type="checkbox" name="hobby" value="Reading"> Reading
+    <input type="checkbox" name="hobby" value="Gaming"> Gaming
+    <input type="checkbox" name="hobby" value="Coding"> Coding<br><br>
+
+    <!-- Image Upload -->
+    Upload Image: <input type="file" id="imageInput" accept="image/*"><br><br>
+    <img id="preview" style="width: 100px; display: none;"><br><br>
+
+    <!-- Name and Marks -->
+    Name: <input type="text" id="name" required><br><br>
+    Marks: <input type="number" id="marks" required><br><br>
+
+    <!-- Submit Button -->
+    <button type="submit">Submit</button>
+  </form>
+
+  <script>
+    // Email validation alert
+    document.getElementById("email").addEventListener("blur", function () {
+      let emailValue = this.value;
+      if (emailValue.includes("@") && emailValue.includes(".")) {
+        alert("Valid email entered!");
+      }
+    });
+
+    // Image file preview
+    document.getElementById("imageInput").addEventListener("change", function () {
+      let file = this.files[0];
+      if (file) {
+        let preview = document.getElementById("preview");
+        preview.src = URL.createObjectURL(file);
+        preview.style.display = "block";
+      }
+    });
+
+    // Form submission with redirection
+    document.getElementById("userForm").addEventListener("submit", function (e) {
+      e.preventDefault(); // prevent page reload
+
+      let email = document.getElementById("email").value;
+      let name = document.getElementById("name").value;
+      let marks = document.getElementById("marks").value;
+
+      // Get selected gender
+      let gender = document.querySelector('input[name="gender"]:checked');
+      let genderValue = gender ? gender.value : "";
+
+      // Get selected hobbies
+      let hobbyNodes = document.querySelectorAll('input[name="hobby"]:checked');
+      let hobbies = Array.from(hobbyNodes).map(h => h.value).join(',');
+
+      // Construct query string and redirect
+      let params = new URLSearchParams({
+        name: name,
+        marks: marks,
+        email: email,
+        gender: genderValue,
+        hobbies: hobbies
+      });
+
+      window.location.href = "result.html?" + params.toString();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!-- Task 1: Validate Mobile Number 
+Create a regex to check if a number:
+
+Starts with 6, 7, 8, or 9
+
+Contains exactly 10 digits
+
+Example Valid: 9876543210
+
+Example Invalid: 1234567890
+
+Hint:
+
+let mobileRegex = /^[6-9]\d{9}$/;
+Provide basic Javascript code for it.               -->
+
+<!DOCTYPE html>
+<head>
+    <title>Validate Mobile Number</title>
+</head>
+<body>
+    <script>
+        //Regex to validate mobile number
+        let mobileRegex = /^[6-9]\d{9}$/;
+
+        //Function to validate the number
+        function validateMobile(number) 
+        {
+            if(mobileRegex.test(number)) 
+                console.log("Valid Mobile Number");
+            else 
+                console.log("Invalid Mobile Number");
+        }
+
+        // Test cases
+        validateMobile("9876543210");   //Valid
+        validateMobile("1234567890");   //Invalid
+    </script>
+</body>
+</html>

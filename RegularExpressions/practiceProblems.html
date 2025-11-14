@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<head>
+    <title>Practice Problems</title>
+</head>
+<body>
+    <script>
+        //Validate PIN(6 digits)
+        let pin = "440001";
+        let pinRegex = /^\d{6}$/;
+
+        if(pinRegex.test(pin)) 
+            console.log("Valid");
+        else 
+            console.log("Invalid");
+
+        //Validate URL
+        let url = "https://google.com";
+        let urlRegex = /^(https?:\/\/)[\w.-]+\.[a-z]{2,}$/i;
+
+        if(urlRegex.test(url)) 
+            console.log("Valid");
+        else 
+            console.log("Invalid");
+
+        //Extract Numbers
+        let text1 = "Order 123 costs $45";
+        let numberRegex = /\d+/g;
+
+        let numbers = text1.match(numberRegex);
+        console.log(numbers);  //["123", "45"]
+
+        //Extract Emails
+        let text2 = "Contact us at help@abc.com or sales@xyz.org";
+        let emailRegex = /[\w.-]+@[\w.-]+\.[a-z]{2,}/g;
+
+        let emails = text2.match(emailRegex);
+        console.log(emails);     //["help@abc.com", "sales@xyz.org"]
+    </script>
+</body>
+</html>

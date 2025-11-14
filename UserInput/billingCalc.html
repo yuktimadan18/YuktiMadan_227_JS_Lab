@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Billing Calculator</title>
+    <style>
+        body, html{
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .container{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            text-align: center;
+        }
+
+        form{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        input, button{
+            padding: 8px;
+            margin: 8px 0;
+            width: 200px;
+            text-align: center;
+        }
+
+        #result{
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Billing Calculator</h2>
+
+        <form id="billingForm">
+            <input type="text" id="itemName" name="itemName" placeholder="Item Name" required>
+            <input type="number" id="quantity" name="quantity" min="1" placeholder="Quantity (default 1)">
+            <input type="number" id="price" name="price" placeholder="Price (₹)" required>
+            <button type="submit">Calculate Total</button>
+        </form>
+
+        <div id="result"></div>
+    </div>
+
+    <script>
+        const calculateTotal = (itemName, quantity = 1, price) => {
+            const total = quantity * price;
+            return `You ordered ${quantity} ${itemName}(s) at ₹${price} each. Total: ₹${total}.`;
+        };
+
+        const form = document.getElementById('billingForm');
+        const resultDiv = document.getElementById('result');
+
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            const { itemName, quantity, price } = event.target.elements;
+
+            const name = itemName.value.trim();
+            const qty = parseInt(quantity.value) || 1;
+            const unitPrice = parseFloat(price.value);
+
+            if (!name || isNaN(unitPrice)) {
+                resultDiv.textContent = 'Please enter valid item name and price.';
+                return;
+            }
+
+            const output = calculateTotal(name, qty, unitPrice);
+            resultDiv.textContent = output;
+        });
+    </script>
+</body>
+</html>

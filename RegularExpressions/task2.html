@@ -1,0 +1,30 @@
+<!-- Task 2: Extract Dates from Text 
+● Input: "Today's date is 12/09/2025 and tomorrow will be 13/09/2025."
+
+● Output: ["12/09/2025", "13/09/2025"]
+
+Hint:
+
+let dateRegex = /\d{2}\/\d{2}\/\d{4}/g;
+Provide basic Javascript code for it.                              -->
+
+<!DOCTYPE html>
+<head>
+    <title>Extract Dates</title>
+</head>
+<body>
+    <script>
+        //Regex to extract dates in dd/mm/yyyy format from a passed string
+        let dateRegex = /\d{2}\/\d{2}\/\d{4}/g;
+
+        //Input text
+        let text = "Today's date is 12/09/2025 and tomorrow will be 13/09/2025.";
+
+        //Extract all matching dates
+        let dates = text.match(dateRegex);
+
+        //Display all extracted dates
+        console.log(dates);     //["12/09/2025", "13/09/2025"]
+    </script>
+</body>
+</html>

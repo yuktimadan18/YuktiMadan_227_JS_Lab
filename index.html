@@ -1,0 +1,27 @@
+<html>
+<head>
+  <title></title>
+</head>
+<body>
+<script>
+// Function to get user name and update DOM
+function greetStudent() {
+  const name = prompt("Please enter your name:");
+
+  if (name) {
+    alert("Welcome, " + name + "!");
+    console.log("Student name entered:", name);
+
+    const greetingElement = document.getElementById("greeting");
+    greetingElement.textContent = "Hello, ${name}! Welcome to your student dashboard.";
+  } else {
+    alert("No name entered. Please refresh and try again.");
+  }
+}
+
+// Execute on page load
+window.onload = greetStudent;
+
+</script>
+</body>
+</html>

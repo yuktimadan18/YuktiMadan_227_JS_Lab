@@ -1,0 +1,32 @@
+<!-- Task 5: Extract Hashtags from a Tweet 
+● Input: "Learning #JavaScript is #fun and #exciting!"
+● Output: ["#JavaScript", "#fun", "#exciting"] 
+Hint:
+
+let tweet = "Learning #JavaScript is #fun and #exciting!";
+
+let hashtags = tweet.match(/#[A-Za-z0-9_]+/g);
+
+console.log(hashtags);
+Provide basic javascript code for it is                         -->
+
+<!DOCTYPE html>
+<head>
+    <title>Extract Hashtags</title>
+</head>
+<body>
+    <script>
+        //Input tweet
+        let tweet = "Learning #JavaScript is #fun and #exciting!";
+
+        //Regex to find hashtags
+        let hashtagRegex = /#[A-Za-z0-9_]+/g;
+
+        //Extract all hashtags
+        let hashtags = tweet.match(hashtagRegex);
+
+        //Display all extracted #tag words
+        console.log(hashtags);      //["#JavaScript", "#fun", "#exciting"]
+    </script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Session Form Auto-Save</title>
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            margin-top: 50px;
+        }
+        form {
+            display: inline-block;
+            text-align: left;
+            background: #f2f2f2;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        input, textarea {
+            display: block;
+            width: 250px;
+            margin-bottom: 10px;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            background: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h2>Session Form Auto-Save</h2>
+
+    <form id="contactForm">
+        <label>Name:</label>
+        <input type="text" id="name" placeholder="Enter your name">
+
+        <label>Email:</label>
+        <input type="email" id="email" placeholder="Enter your email">
+
+        <label>Message:</label>
+        <textarea id="message" placeholder="Enter your message"></textarea>
+
+        <button type="button" onclick="clearSession()">Clear Session Data</button>
+    </form>
+
+    <script>
+        const nameInput = document.getElementById("name");
+        const emailInput = document.getElementById("email");
+        const messageInput = document.getElementById("message");
+
+        // 1️. Restore values from sessionStorage (if available)
+        window.addEventListener("load", () => {
+            nameInput.value = sessionStorage.getItem("name") || "";
+            emailInput.value = sessionStorage.getItem("email") || "";
+            messageInput.value = sessionStorage.getItem("message") || "";
+        });
+
+        // 2️. Save data as user types (auto-save)
+        nameInput.addEventListener("input", () => {
+            sessionStorage.setItem("name", nameInput.value);
+        });
+        emailInput.addEventListener("input", () => {
+            sessionStorage.setItem("email", emailInput.value);
+        });
+        messageInput.addEventListener("input", () => {
+            sessionStorage.setItem("message", messageInput.value);
+        });
+
+        // 3️. Option to clear data manually
+        function clearSession() {
+            sessionStorage.clear();
+            nameInput.value = "";
+            emailInput.value = "";
+            messageInput.value = "";
+            alert("Session storage cleared!");
+        }
+    </script>
+</body>
+</html>

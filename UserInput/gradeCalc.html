@@ -1,0 +1,35 @@
+<html>
+<head>
+    <title>Grade Calculator</title>
+</head>
+<body>
+    <script>
+        let m1 = prompt("Enter Physics marks (out of 100): ");
+        let m2 = prompt("Enter Chemistry marks (out of 100): ");
+        let m3 = prompt("Enter Mathemetics marks (out of 100): ");
+        let m4 = prompt("Enter Computer Science marks (out of 100): ");
+        let m5 = prompt("Enter English marks (out of 100): ");
+
+        let total = m1+m2+m3+m4+m5;
+        let perc = total/5;
+        let grade = null;
+
+        if(perc>=90)
+            grade = "A+";
+        else if(perc>=80)
+            grade = "A";
+        else if(perc>=70)
+            grade = "B+";
+        else if(perc>=60)
+            grade = "B"
+        else if(perc>=50)
+            grade = "C";
+        else if(perc>=30)
+            grade = "D";
+        else 
+            grade = "Fail";
+
+            alert(`Your grade is: ${grade}`);
+    </script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<head>
+    <title>String Functions</title>
+</head>
+<body>
+    <script>
+        //Finding length of a string using length property
+        let s1 = "Welcome to Javascript Lab";
+        console.log("Length: ",s1.length);
+
+        //Finding the first occurrence using indexOf() method
+        let s2 = "Welcome to Javascript Lab";
+        let pos = s2.indexOf("Javascript");
+        console.log("Position: ",pos);
+
+        //Finding the character at specific index using charAt() method
+        let s3 = "Welcome to Javascript Lab";
+        let char = s3.charAt(6);
+        console.log("Character: ",char);
+
+        //Finding the last index of a substring using lastIndexOf() method
+        let s4 = "Welcome to Javascript Lab and be ready to enhance your programming skills";
+        let index = s4.lastIndexOf("to");
+        console.log("Last Index: ",index);
+
+        //Slicing a string using slice() method
+        let s5 = "Welcome to Javascript Lab";
+        let slicedString = s5.slice(11,21);
+        console.log("Sliced string: ",slicedString);
+
+        //Extracting a substring from a main string using substring() method
+        let s6 = "Welcome to Javascript Lab";
+        let subString = s6.substring(11,21);
+        console.log("Sliced string: ",subString);
+
+        //Splitting a sentence using split() method
+        let s7 = "HTML,CSS,JavaScript,Python";
+        let parts = s7.split(",");
+        console.log(parts);
+        
+        //Replacing text using replace() method
+        let s8 = "I like cats";
+        let newQuote = s8.replace("cats","dogs");
+        console.log("New string: ",newQuote);
+
+        //Converting lowercase string to uppercase string using toUpperCase() method
+        let s9 = "welcome to javascript programming";
+        let upperString = s9.toUpperCase();
+        console.log("Uppercase String: ",upperString);
+
+        //Converting uppercase string to lowercase string using toLowerCase() method
+        let s10 = "WELCOME TO JAVASCRIPT PROGRAMMING";
+        let lowerString = s10.toLowerCase();
+        console.log("Lowercase String: ",lowerString);
+
+        //Removing whitespaces from both ends in a string using trim() method
+        let s11 = " Welcome to Javascript Programming ";
+        let newString = s11.trim()
+        console.log("New String: ",newString);
+
+        //Checking whether a passed string is a part of main string using includes() method
+        let s12 = "Welcome to Javascript Programming";
+        let res = s12.includes("Javascript");
+        console.log("Result: ",res);
+    </script>
+</body>
+</html>

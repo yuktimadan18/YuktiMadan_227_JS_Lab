@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<head>
+    <title>Regular Expression Examples</title>
+</head>
+<body>
+    <script>
+        //Test if a string contains digits
+        let regex = /\d/;
+        console.log(regex.test("Hello 123"));
+        console.log(regex.test("Hello"));
+
+        //Validate Email Address
+        let emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+        console.log(emailRegex.test("student@example.com")); // true
+        console.log(emailRegex.test("student@.com")); // false
+
+        //Find all words in a string
+        let text = "JavaScript is fun!";
+        let words = text.match(/\w+/g);
+        console.log(words); // ["JavaScript", "is", "fun"]
+
+        //Replace multiple spaces with a single space
+        let messy = "Hello World from JavaScript";
+        let clean = messy.replace(/\s+/g, " ");
+        console.log(clean); // "Hello World from JavaScript"
+    </script>
+</body>
+</html>

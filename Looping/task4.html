@@ -1,0 +1,21 @@
+<!-- Implement a loop that prints Fibonacci numbers up to a given number n. -->
+<html>
+<head>
+    <title>Task4</title>
+</head>
+<body>
+    <script>
+        let n = parseInt(prompt("Enter number of terms you want: "));
+        let t1=0, t2=1, t3;
+        
+        console.log("Fibonacci Series: ");
+        for(let x=1; x<=n; x++)
+        {
+            console.log(t1);
+            t3 = t1+t2;
+            t1 = t2;
+            t2 = t3;
+        }
+    </script>
+</body>
+</html>

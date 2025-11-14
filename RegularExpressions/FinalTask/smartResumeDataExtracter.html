@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<head>
+    <title>Smart Resume Data Extracter</title>
+</head>
+<body>
+    <script>
+        // Final Project: Smart Resume Data Extractor
+        let resume = `
+        Name: jOhN doE
+        Email: john.doe@Example.com 
+        Phone: 9876543210
+        
+        Skills: HTML, CSS, JavaScript, Python, SQL
+        
+        Extra: Contact me at john.altmail@example.org
+        #developer #coder
+        `;
+
+        // Remove field labels and punctuation, keep only actual words
+        function cleanResumeText(text) {
+            // Extract just name, skills, extra words, and hashtags
+            let name = text.match(/Name:\s*([^\n]+)/i)?.[1] || "";
+            let skills = text.match(/Skills:\s*([^\n]+)/i)?.[1] || "";
+            let hashtags = (text.match(/#[A-Za-z0-9_]+/g) || []).join(' ');
+            let extra = text.match(/Extra:\s*([^\n]+)/i)?.[1] || "";
+    
+            let combined = `${name} ${skills} ${extra} ${hashtags}`;
+            // Remove emails/numbers/symbols
+            combined = combined.replace(/\b[\w.+-]+@[\w.-]+\.[A-Za-z]{2,}\b/g, '');     // emails
+            combined = combined.replace(/\d+/g, '');                                    // numbers
+            combined = combined.replace(/[:;,.]/g, '');                                 // punctuation
+            combined = combined.replace(/\s+/g, ' ').trim();                            // normalize spaces
+            
+            return combined;
+        }
+
+        // 1. Format Name
+        function formatName(rawName) {
+            rawName = rawName.trim().replace(/\s+/g, " ");
+            let words = rawName.split(" ");
+            let formattedName = words.map(w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase());
+            return formattedName.join(" ");
+        }
+
+        // 2. Extract and Validate Emails
+        function extractEmails(text) {
+            let emailRegex = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g;
+            let emails = text.match(emailRegex) || [];
+            return emails.map(e => e.toLowerCase());
+        }
+
+        // 3. Validate Mobile Number
+        function validateMobile(number) {
+            let clean = number.trim();
+            let regex = /^[6-9]\d{9}$/;
+            return regex.test(clean) ? clean : "Invalid phone number";
+        }
+
+        // 4. Process Skills
+        function processSkills(rawSkills) {
+            return rawSkills.split(",").map(s => s.trim()).filter(s => s.length > 0);
+        }
+
+        // 5. Extract Hashtags
+        function extractHashtags(text) {
+            let tagRegex = /#[A-Za-z][A-Za-z0-9_]*/g;
+            return text.match(tagRegex) || [];
+        }
+
+        // 6. Word Count
+        function countWords(text) {
+            let cleanedText = cleanResumeText(text);
+            let words = cleanedText.split(" ") .filter(w => w.length > 0);
+            return words.length;
+        }
+
+        // 7. Vowel Count
+        function countVowels(text) {
+            let cleanedText = cleanResumeText(text);
+            let vowels = ['a', 'e', 'i', 'o', 'u'];
+            let count = 0;
+            for (let char of cleanedText.toLowerCase()) {
+                if (vowels.includes(char)) {
+                    count++;
+                }
+            }
+            return count;
+            /*let matches = text.match(/[aeiouAEIOU]/g);
+            return matches ? matches.length : 0;*/
+        }
+
+        // -------------------------
+        // Main Program
+        // -------------------------
+        function processResume(resumeText) {
+            let output = {};
+
+            // Extract Name
+            let nameMatch = resumeText.match(/Name:\s*(.+)/i);
+            if (nameMatch) output.name = formatName(nameMatch[1]);
+
+            // Extract Emails
+            let emails = extractEmails(resumeText);
+            output.email = emails[0] || "";
+            output.emailCount = emails.length;
+
+            // Extract Phone
+            let phoneMatch = resumeText.match(/Phone:\s*([0-9]+)/i);
+            if (phoneMatch) output.phone = validateMobile(phoneMatch[1]);
+
+            // Extract Skills
+            let skillsMatch = resumeText.match(/Skills:\s*(.+)/i);
+            if (skillsMatch) output.skills = processSkills(skillsMatch[1]);
+
+            // Extract Hashtags
+            output.hashtags = extractHashtags(resumeText);
+
+            // Count Words
+            output.wordCount = countWords(resumeText);
+
+            // Count Vowels
+            output.vowelCount = countVowels(resumeText);
+
+            return output;
+        }
+
+        // -------------------------
+        // Run Program
+        // -------------------------
+        console.log(processResume(resume));
+    </script>
+</body>
+</html>

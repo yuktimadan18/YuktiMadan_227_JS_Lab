@@ -1,0 +1,18 @@
+<!-- Given an array of strings, find the longest string and print it. -->
+<html>
+<head>
+    <title>Task2</title>
+</head>
+<body>
+    <script>
+        let ar = ["Mango","Banana","Apple","Grapes","Watermelon"];
+        let mx = ar[0];
+        for(let x=0; x<ar.length; x++)
+        {
+            if(ar[x].length > mx.length)
+                mx = ar[x];
+        }
+        console.log("Longest String: "+ mx);
+    </script>
+</body>
+</html>

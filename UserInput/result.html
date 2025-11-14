@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Form Results</title>
+</head>
+<body>
+  <h2>Submitted Details</h2>
+  <div id="output"></div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const name = params.get("name");
+    const marks = params.get("marks");
+    const email = params.get("email");
+    const gender = params.get("gender");
+    const hobbies = params.get("hobbies");
+
+    // Display values
+    document.getElementById("output").innerHTML = `
+      <p><strong>Name:</strong> ${name}</p>
+      <p><strong>Email:</strong> ${email}</p>
+      <p><strong>Marks:</strong> ${marks}</p>
+      <p><strong>Gender:</strong> ${gender}</p>
+      <p><strong>Hobbies:</strong> ${hobbies}</p>
+    `;
+  </script>
+</body>
+</html>

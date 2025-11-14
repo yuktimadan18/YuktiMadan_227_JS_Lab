@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Registration</title>
+    <style>
+        body, html{
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .container{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            text-align: center;
+        }
+
+        form{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        input, button{
+            padding: 10px;
+            margin: 8px 0;
+            width: 250px;
+            text-align: center;
+        }
+
+        #message{
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        .error{
+            color: red;
+        }
+
+        .success{
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>User Registration Form</h2>
+
+        <form id="registrationForm">
+            <input type="text" name="name" id="name" placeholder="Name" required>
+            <input type="number" name="age" id="age" placeholder="Age" required>
+            <input type="email" name="email" id="email" placeholder="Email" required>
+            <button type="submit">Register</button>
+        </form>
+
+        <div id="message"></div>
+    </div>
+
+    <script>
+        const form = document.getElementById('registrationForm');
+        const messageDiv = document.getElementById('message');
+
+        // Basic email regex
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            // Create user object from form values
+            const user = {
+                name: form.name.value.trim(),
+                age: parseInt(form.age.value),
+                email: form.email.value.trim()
+            };
+
+            // Object destructuring
+            const { name, age, email } = user;
+
+            // Validation
+            if (!name) {
+                showMessage('Name cannot be empty.', 'error');
+            } else if (isNaN(age) || age < 13 || age > 120) {
+                showMessage('Age must be a number between 13 and 120.', 'error');
+            } else if (!emailRegex.test(email)) {
+                showMessage('Please enter a valid email address.', 'error');
+            } else {
+                // Success
+                const successMessage = `Welcome, ${name} (Age: ${age}). Your email ${email} has been registered successfully!`;
+                showMessage(successMessage, 'success');
+                form.reset();
+            }
+        });
+
+        // Show message with dynamic class
+        const showMessage = (msg, type) => {
+            messageDiv.textContent = msg;
+            messageDiv.className = type;
+        };
+    </script>
+</body>
+</html>

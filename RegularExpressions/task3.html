@@ -1,0 +1,42 @@
+<!-- Task 3: Password Strength Checker 
+Rules:
+
+● Minimum 8 characters
+
+● At least 1 uppercase, 1 lowercase, 1 number, and 1 special character
+
+Regex:
+
+let passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+Examples:
+
+● "StrongPass1!" → Valid
+
+● "weakpass" → Invalid
+Provide basic javascript code for it                          -->
+
+<!DOCTYPE html>
+<head>
+    <title>Password Strength Checker</title>
+</head>
+<body>
+    <script>
+        //Regex to validate strong password
+        let passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+        //Function to check password strength
+        function checkPassword(password) 
+        {
+            if(passwordRegex.test(password)) 
+                console.log("Strong Password");
+            else 
+                console.log("Weak Password");
+        }
+
+        //Test cases
+        checkPassword("StrongPass1!"); //Strong Password
+        checkPassword("weakpass");     //Weak Password
+    </script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!-- Task 4: Replace Multiple Spaces with Single Space
+● Input: &quot;JavaScript is fun&quot;
+● Output: &quot;JavaScript is fun&quot;
+● Hint: Use replace() with regex /\s+/g.                  -->
+
+<!DOCTYPE html>
+<head>
+    <title>Replace Multiple Spaces</title>
+</head>
+<body>
+    <script>
+        //Replace multiple spaces with a single space
+        let str = "JavaScript    is     fun";
+        let formatted = str.replace(/\s+/g, " ");
+
+        console.log(formatted);
+    </script>
+</body>
+</html>
